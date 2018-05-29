@@ -1,0 +1,47 @@
+sudo mount -t vboxsf hadoop_assignment_PA2 /media/windows-share
+
+start-hadoop.sh
+
+#to set the file for the Hadoop input
+
+hdfs dfs -put $HOME/"folder_name" input
+
+eg: hdfs dfs -put $HOME/NYTimesTextExtractFromBeautifulSoup.txt input
+hdfs dfs -put $HOME/twitter1dayData.csv input_Twitter1day
+hdfs dfs -put $HOME/tweetTextExtract.txt input_TwitterFull
+hdfs dfs -put $HOME/NewsData/NYTTextExtractFullWeek.txt input_NYTFull
+
+
+hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.4.jar -mapper 'python3 mapper.py' -reducer 'python3 reducer.py' -input input -output output
+# for twitter one day data 
+hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.4.jar -mapper 'python3 mapper.py' -reducer 'python3 reducer.py' -input input_Twitter1day -output output_Twitter1day
+# for twitter full data
+hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.4.jar -mapper 'python3 mapper.py' -reducer 'python3 reducer.py' -input input_TwitterFull -output output_TwitterFull
+
+# for NYT full data
+hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.4.jar -mapper 'python3 mapper.py' -reducer 'python3 reducer.py' -input input_NYTFull -output output_NYTFull
+
+
+--for coocurrence 
+hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.4.jar -mapper 'python3 mapper_cooccurence.py' -reducer 'python3 reducer.py' -input input -output output
+hadoop jar /home/hadoop/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.4.jar -mapper 'python3 mapper_cooccurence.py' -reducer 'python3 reducer.py' -input input_Twitter1day -output output_CoOccur_Twitter1day
+
+CoOccurTwitter1day_part-00000
+CoOccurTwitterFull_part-00000
+
+hdfs dfs -get output/ "output folder name"  
+eg : hdfs dfs -get output1 $HOME/CoOccur
+eg : hdfs dfs -get output_Twitter1day $HOME/Twitter1day
+eg : hdfs dfs -get output_CoOccur_Twitter1day $HOME/CoOccur_Twitter1day
+eg : hdfs dfs -get output_TwitterFull $HOME/TwitterFull
+eg : hdfs dfs -get output_NYTFull $HOME/NYTFull
+
+
+#to remove a folder 
+hdfs dfs -rm -r output2
+
+#to get out of safe mode
+hdfs dfsadmin -safemode leave
+
+
+sudo pip install -U nltk
