@@ -1,0 +1,24 @@
+https://apps.twitter.com/app/14692096/keys
+
+Consumer Key (API Key)	hqgRb0SNmm7TG0tAMXuF4RkHA
+Consumer Secret (API Secret)	Di7vtfQNTwxZEFykQPZYHZXRyJFsjQBlfcxcN3hZYtKFLot7zM
+Access Level	Read and write (modify app permissions)
+Owner	suhit13
+Owner ID	1834048932
+
+App-only authentication	https://api.twitter.com/oauth2/token
+Request token URL	https://api.twitter.com/oauth/request_token
+Authorize URL	https://api.twitter.com/oauth/authorize
+Access token URL	https://api.twitter.com/oauth/access_token
+
+
+Access Token	1834048932-9Jc4ZqJgsDZK1wyvHSiP05aHEoseGaiPw0B9ibA
+Access Token Secret	75j16MOLxKrW0Ea53OBl01bkUo13ghEjMyoNLXjbn3oma
+
+
+
+
+
+
+
+https://www.geeksforgeeks.org/twitter-sentiment-analysis-using-python/
